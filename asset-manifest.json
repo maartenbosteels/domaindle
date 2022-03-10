@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/domaindle/static/css/main.49a3d093.css",
-    "main.js": "/domaindle/static/js/main.0ae25633.js",
+    "main.css": "/domaindle/static/css/main.c3092c9d.css",
+    "main.js": "/domaindle/static/js/main.f48f738d.js",
     "static/js/787.b3f9d252.chunk.js": "/domaindle/static/js/787.b3f9d252.chunk.js",
     "index.html": "/domaindle/index.html",
-    "main.49a3d093.css.map": "/domaindle/static/css/main.49a3d093.css.map",
-    "main.0ae25633.js.map": "/domaindle/static/js/main.0ae25633.js.map",
+    "main.c3092c9d.css.map": "/domaindle/static/css/main.c3092c9d.css.map",
+    "main.f48f738d.js.map": "/domaindle/static/js/main.f48f738d.js.map",
     "787.b3f9d252.chunk.js.map": "/domaindle/static/js/787.b3f9d252.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.49a3d093.css",
-    "static/js/main.0ae25633.js"
+    "static/css/main.c3092c9d.css",
+    "static/js/main.f48f738d.js"
   ]
 }
