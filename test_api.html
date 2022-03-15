@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' *.dnsbelgium.be">
+
+  <title>Test Domain availability API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+      function pubws() {
+          console.log('=======================');
+          console.log('Testing pubws API');
+          url = "https://api.dnsbelgium.be/pubws/das?domain=abc";
+          fetch(url)
+              .then(value => value.json())
+              .then(value => value.data.dasResults.be.status)
+              .then(value => console.log("domain status : [" + value.toString() + "]"));
+      }
+
+      function new_api(mode) {
+          console.log('=======================');
+          url = "https://api.dnsbelgium.be/whois/registration/abc/status";
+          console.log('Testing url: [' + url + '] with mode: [' + mode + ']');
+
+          options = {
+              //mode: '', // no-cors, *cors, same-origin
+              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              headers: {
+                  'accept': 'application/json',
+              }
+          }
+          options.mode = mode
+
+
+          // mode: 'cors' => returns a 403
+          // And Chrome console says:
+          // No 'Access-Control-Allow-Origin' header is present on the requested resource.
+          // If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+          // mode: 'no-cors' => returns a 200 but I cannot see the response
+          // But "Preview" in the Network tab of the Chrome console says:
+          // Failed to laod response data: No data found for resource with given identifier
+
+          fetch(url, options)
+              .then(response => response.json())
+              .then(data => console.log("domain status : [" + data.status + "]"));
+
+      }
+
+  </script>
+
+<body>
+
+<p>
+  <button onclick="pubws()">Test pubws</button>
+</p>
+
+<p>
+  <button onclick="new_api('cors')">Test new API with 'mode: cors'</button>
+</p>
+
+<p>
+  <button onclick="new_api('no-cors')">Test new API with 'mode: no-cors'</button>
+</p>
+
+</body>
+
+</html>
+
