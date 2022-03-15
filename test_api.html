@@ -10,7 +10,7 @@
 
   <script>
       function pubws() {
-          console.log('=======================');
+          console.log('======== pubws ===============');
           console.log('Testing pubws API');
           url = "https://api.dnsbelgium.be/pubws/das?domain=abc";
           fetch(url)
@@ -20,7 +20,7 @@
       }
 
       function new_api(mode) {
-          console.log('=======================');
+          console.log('====== new api =================');
           url = "https://api.dnsbelgium.be/whois/registration/abc/status";
           console.log('Testing url: [' + url + '] with mode: [' + mode + ']');
 
@@ -44,6 +44,18 @@
           // Failed to laod response data: No data found for resource with given identifier
 
           fetch(url, options)
+              .then(async response => {
+                  console.log("response.ok: " + response.ok)
+                  console.log("response.statusCode: " + response.statusCode)
+                  console.log("response.statusText: " + response.statusText)
+                  console.log("response.statusMessage: " + response.statusMessage)
+                  console.log("response.headersSent: " + response.headersSent)
+
+                  parsedResponse = await response.json();
+                  console.log("parsedResponse: " +  parsedResponse);
+
+                  return response;
+              })
               .then(response => response.json())
               .then(data => console.log("domain status : [" + data.status + "]"));
 
@@ -65,6 +77,8 @@
   <button onclick="new_api('no-cors')">Test new API with 'mode: no-cors'</button>
 </p>
 
+
+<!--default-src 'self'; style-src 'self' 'unsafe-inline' a.disquscdn.com *.dnsbelgium.be; img-src 'self' data: syndication.twitter.com platform.twitter.com www.google-analytics.com/collect stats.g.doubleclick.net/r/collect referrer.disqus.com a.disquscdn.com assets01.surveymonkey.com/collect/website/assets/images/ *.dnsbelgium.be; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com/recaptcha/api2/ www.google.com/recaptcha/api.js www.google-analytics.com/analytics.js platform.twitter.com dnsbe.disqus.com widget.surveymonkey.com/collect/website/js/ ajax.googleapis.com/ajax/libs/jquery/ *.dnsbelgium.be; child-src 'self' www.google.com maps.google.com www.youtube.com syndication.twitter.com platform.twitter.com magic.piktochart.com disqus.com surveymonkey.com *.surveymonkey.com *.dnsbelgium.be; connect-src 'self' www.google-analytics.com/collect;-->
 </body>
 
 </html>
